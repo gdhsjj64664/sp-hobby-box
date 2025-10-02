@@ -1,4 +1,4 @@
-SP-Hobby-Box (SP爱好匣子)
+SP-Hobby-Box (SP爱好匣子) 【1.0.0 会继续完善更新】
 ✨ 一个为SP爱好者打造的纯前端网页工具套件，它将趣味游戏与个人偏好记录融为一体。应用无需安装，下载即玩，所有数据都将安全地保存在您自己的浏览器中，确保了绝对的隐私。
 
 本工具包含两大核心模块：
@@ -33,3 +33,7 @@ JavaScript (ES6+)
 您的所有数据都100%安全。
 
 本应用不包含任何后端代码，也不会将您的任何数据（包括瓶子颜色、棋盘布局、游戏进度）上传到任何服务器。所有信息都通过 LocalStorage 技术，加密存储在您自己的浏览器缓存中，仅您自己可见。
+<img width="1148" height="743" alt="image" src="https://github.com/user-attachments/assets/175fb5c4-3890-4baa-8e7a-2183a0e8a32d" />
+<img width="1155" height="912" alt="image" src="https://github.com/user-attachments/assets/e303381f-536e-4507-93b0-66d986661768" />
+
+
