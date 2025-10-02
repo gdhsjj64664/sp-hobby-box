@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP 爱好与冒险 (自定义版)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="tab-nav">
+            <button id="show-bottles-btn" class="tab-btn active">爱好小瓶子</button>
+            <button id="show-game-btn" class="tab-btn">SP大冒险</button>
+        </nav>
+
+        <main id="bottles-section" class="main-section">
+            <h1>SP 爱好小瓶子</h1>
+            <p class="description">点击瓶子为其选择一个标记颜色。数据会自动保存。</p>
+            <div id="bottle-grid" class="bottle-grid"></div>
+            <button id="clear-all-colors-btn" class="action-btn danger-btn">清空所有标记颜色</button>
+        </main>
+
+        <main id="game-section" class="main-section" style="display: none;">
+            <div class="game-header">
+                <h1>SP 大冒险</h1>
+                <button id="edit-mode-toggle" class="action-btn edit-btn">进入编辑模式</button>
+            </div>
+
+            <div class="play-controls">
+                <button id="roll-dice-btn" class="action-btn">掷骰子</button>
+                <div id="dice-result" class="dice-display">🎲</div>
+                <button id="reset-game-btn" class="action-btn danger-btn">重新开始</button>
+            </div>
+            
+            <div class="edit-controls" style="display: none;">
+                <button id="add-cell-btn" class="action-btn">添加方块</button>
+                <button id="save-layout-btn" class="action-btn">保存布局</button>
+                <button id="load-layout-btn" class="action-btn">加载自定义布局</button>
+                <button id="reset-layout-btn" class="action-btn danger-btn">恢复默认布局</button>
+            </div>
+
+            <div id="game-board-wrapper">
+                <div id="game-board"></div>
+                <div id="player-piece"></div>
+            </div>
+        </main>
+    </div>
+
+    <div id="color-palette" class="color-palette">
+        <div class="color-swatch" data-color="#e0e0e0" title="默认 (无标记)"></div>
+        <div class="color-swatch" style="background-color: #81c784;" data-color="#81c784" title="喜爱"></div>
+        <div class="color-swatch" style="background-color: #64b5f6;" data-color="#64b5f6" title="尝试过"></div>
+        <div class="color-swatch" style="background-color: #ffd54f;" data-color="#ffd54f" title="想尝试"></div>
+        <div class="color-swatch" style="background-color: #e57373;" data-color="#e57373" title="不适"></div>
+    </div>
+
+    <div id="edit-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>编辑方块</h3>
+            <label for="cell-text-input">文字内容:</label>
+            <input type="text" id="cell-text-input" placeholder="输入方块文字">
+            
+            <label for="cell-type-select">方块类型:</label>
+            <select id="cell-type-select">
+                <option value="task">任务 (白)</option>
+                <option value="action">行动 (绿)</option>
+                <option value="special">特殊 (红)</option>
+                <option value="start">起点 (蓝)</option>
+                <option value="end">终点 (紫)</option>
+            </select>
+            
+            <div class="modal-buttons">
+                <button id="save-cell-btn" class="action-btn">保存更改</button>
+                <button id="cancel-cell-btn" class="action-btn secondary-btn">取消</button>
+                <button id="delete-cell-btn" class="action-btn danger-btn">删除方块</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

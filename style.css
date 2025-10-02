@@ -1,0 +1,60 @@
+:root {
+    --bg-color: #f0f2f5; --container-bg: #ffffff; --primary-color: #5d5d5d; --primary-hover: #333; --text-color: #333;
+    --border-color: #ddd; --shadow: 0 4px 12px rgba(0, 0, 0, 0.05); --bottle-default-color: #e0e0e0;
+    --action-btn-bg: #007bff; --danger-btn-bg: #dc3545; --edit-btn-bg: #28a745; --secondary-btn-bg: #6c757d;
+}
+body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+.container { max-width: 900px; width: 100%; margin: 0 auto; padding: 20px; background-color: var(--container-bg); border-radius: 8px; box-shadow: var(--shadow); text-align: center; }
+h1 { font-size: 2.5em; font-weight: bold; color: var(--primary-color); margin: 20px 0 10px; letter-spacing: 2px; }
+.description { color: #666; margin-bottom: 30px; font-size: 0.95em; }
+.tab-nav { display: flex; justify-content: center; border-bottom: 2px solid var(--border-color); margin-bottom: 20px; }
+.tab-btn { padding: 10px 20px; border: none; background-color: transparent; cursor: pointer; font-size: 1.1em; color: #888; border-bottom: 3px solid transparent; transition: all 0.2s; }
+.tab-btn:hover { color: var(--primary-color); }
+.tab-btn.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
+.bottle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 15px; justify-content: center; margin-bottom: 30px; }
+.bottle-container { position: relative; padding: 10px 5px; display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.bottle-container:hover { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+.bottle-svg { width: 60px; height: 60px; margin-bottom: 8px; }
+.bottle-svg path { stroke: #777; stroke-width: 1.5; transition: fill 0.3s ease; }
+.bottle-name { font-weight: normal; font-size: 0.9em; word-break: keep-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; line-height: 1.2; }
+.color-palette { position: absolute; display: none; background-color: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); padding: 6px; z-index: 1000; display: flex; gap: 6px; }
+.color-swatch { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.2); transition: transform 0.2s; }
+.color-swatch:hover { transform: scale(1.1); box-shadow: 0 0 0 2px var(--primary-color); }
+.action-btn { padding: 8px 16px; border: none; border-radius: 20px; color: white; font-size: 0.9rem; cursor: pointer; transition: background-color 0.2s, transform 0.1s; }
+.action-btn:active { transform: scale(0.95); }
+.danger-btn { background-color: var(--danger-btn-bg); }
+.danger-btn:hover { background-color: #c82333; }
+.edit-btn { background-color: var(--edit-btn-bg); }
+.edit-btn:hover { background-color: #218838; }
+.secondary-btn { background-color: var(--secondary-btn-bg); }
+.secondary-btn:hover { background-color: #5a6268; }
+
+/* --- 游戏区域 --- */
+.game-header { display: flex; justify-content: center; align-items: center; gap: 20px; }
+.play-controls, .edit-controls { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+.play-controls .action-btn { background-color: var(--action-btn-bg); }
+.play-controls .action-btn:hover { background-color: #0056b3; }
+.dice-display { font-size: 2em; min-width: 50px; }
+#game-board-wrapper { position: relative; max-width: 700px; margin: 0 auto; aspect-ratio: 10 / 5; }
+#game-board { display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(5, 1fr); width: 100%; height: 100%; border: 1px solid var(--border-color); }
+.grid-placeholder { border: 1px dashed #e0e0e0; transition: background-color 0.2s; }
+.grid-placeholder.drag-over { background-color: #c8e6c9; }
+.game-cell { position: relative; z-index: 10; display: flex; justify-content: center; align-items: center; font-size: clamp(0.5rem, 1.5vw, 0.8rem); padding: 2px; line-height: 1.2; overflow: hidden; user-select: none; transition: box-shadow 0.2s; }
+.game-cell.editable { cursor: grab; }
+.game-cell.editable:hover { box-shadow: 0 0 0 3px var(--edit-btn-bg) inset; }
+.game-cell.dragging { opacity: 0.5; cursor: grabbing; box-shadow: none; }
+.cell-type-task { background-color: #fff; border: 1px solid #ccc; }
+.cell-type-action { background-color: #a5d6a7; border: 1px solid #81c784; }
+.cell-type-special { background-color: #ef9a9a; border: 1px solid #e57373; }
+.cell-type-start { background-color: #90caf9; border: 1px solid #64b5f6; }
+.cell-type-end { background-color: #ce93d8; border: 1px solid #ba68c8; }
+.cell-type-center { background-color: #f5f5f5; border: 1px solid #ddd; font-weight: bold; font-size: clamp(1rem, 5vw, 2rem); }
+#player-piece { position: absolute; width: 30px; height: 30px; background-color: rgba(255, 0, 0, 0.8); border: 2px solid white; border-radius: 50%; box-shadow: 0 0 5px black; transform: translate(-50%, -50%); transition: top 0.5s ease-in-out, left 0.5s ease-in-out, opacity 0.3s; pointer-events: none; z-index: 20; }
+
+/* --- 编辑弹窗 --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { background: white; padding: 25px; border-radius: 8px; width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 15px; }
+.modal-content h3 { margin: 0 0 10px; text-align: left; }
+.modal-content label { text-align: left; font-weight: bold; }
+.modal-content input, .modal-content select { width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--border-color); box-sizing: border-box; }
+.modal-buttons { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
